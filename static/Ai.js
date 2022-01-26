@@ -10,7 +10,7 @@ let possible = [0, 1, 2, 3];
 let random_per = 0.08;
 
 async function loadModel(level) {
-    model = await tf.loadLayersModel("http://localhost:8000/models/day" + level + "/model.json");
+    model = await tf.loadLayersModel("http://ec2-34-228-197-123.compute-1.amazonaws.com:8000/models/day" + level + "/model.json");
 }
 
 onmessage = function (e) {
