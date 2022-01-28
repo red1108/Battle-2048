@@ -10,8 +10,8 @@ let possible = [0, 1, 2, 3];
 let random_per = 0.08;
 
 async function loadModel(level) {
-    if(level == undefined) level = 1;
-    model_url = "http://battle2048.com/models/day" + level + "/model.json";
+    if (level == undefined) level = 1;
+    let model_url = "http://battle2048.com/models/day" + level + "/model.json";
     model = await tf.loadLayersModel(model_url);
     console.log(model_url);
 }
