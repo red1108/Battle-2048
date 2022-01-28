@@ -49,7 +49,7 @@ ul {
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
     z-index: 1;
-    font-size: 2vw;
+    font-size: 26px;
     font-family: Calibri;
     font-weight: bold;
     color: #fff;
@@ -178,7 +178,7 @@ ul {
     border-bottom-right-radius: 7px;
     border-bottom-left-radius: 7px;
     z-index: 1;
-    font-size: 2vh;
+    font-size: 14px;
     font-family: Calibri;
     font-weight: bold;
     color: #fff;
