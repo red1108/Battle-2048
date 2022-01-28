@@ -4,9 +4,12 @@ const map_size = constants.map_size;
 let padding = constants.block_padding;
 let square_round = constants.block_round;
 
-const playerColor = constants.player_color;
+let color_theme = 0;
+if (Math.random() < 0.3) color_theme = 1;
+
+const playerColor = constants.player_color[color_theme];
 const playerTextColor = constants.player_text_color;
-const aiColor = constants.ai_color;
+const aiColor = constants.ai_color[color_theme];
 const aiTextColor = constants.ai_text_color;
 
 CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius) {
@@ -99,8 +102,8 @@ export function animationPath(canvas, state, paths, next_state) {
     ctx.font = fontSize + "px Arial";
     const square_size = (canvas.width - padding * (map_size + 1)) / map_size;
 
-    let frame = 30;
-    let cur = 30;
+    let frame = 40;
+    let cur = 40;
 
     const animate = setInterval(() => {
         drawGrid(canvas);
@@ -108,9 +111,10 @@ export function animationPath(canvas, state, paths, next_state) {
         for (let i = 0; i < paths.length; i++) {
             //row col row col
             const val = state[paths[i][0] * map_size + paths[i][1]];
+            const ratio = Math.pow(cur / frame, 1.7);
 
-            const col = (paths[i][1] * cur + paths[i][3] * (frame - cur)) / frame;
-            const row = (paths[i][0] * cur + paths[i][2] * (frame - cur)) / frame;
+            const col = paths[i][1] * ratio + paths[i][3] * (1 - ratio);
+            const row = paths[i][0] * ratio + paths[i][2] * (1 - ratio);
             const x = padding * (col + 1) + square_size * col;
             const y = padding * (row + 1) + square_size * row;
 
