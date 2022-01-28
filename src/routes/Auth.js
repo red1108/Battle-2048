@@ -82,26 +82,26 @@ const Auth = () => {
         let provider;
         if (name === "google") {
             provider = new firebaseInstance.auth.GoogleAuthProvider();
+            let user_email, user_uid, is_new;
+            await authService.signInWithPopup(provider).then((result) => {
+                user_email = result.user.email;
+                user_uid = result.user.uid;
+                is_new = result.additionalUserInfo.isNewUser;
+            });
+            if (is_new) {
+                await dbService
+                    .collection("user_info")
+                    .doc(user_uid)
+                    .set({
+                        uid: user_uid,
+                        id: user_email.substring(0, user_email.indexOf("@")),
+                        email: user_email,
+                    });
+            }
         } else {
             //error
         }
 
-        let user_email, user_uid, is_new;
-        await authService.signInWithPopup(provider).then((result) => {
-            user_email = result.user.email;
-            user_uid = result.user.uid;
-            is_new = result.additionalUserInfo.isNewUser;
-        });
-        if (is_new) {
-            await dbService
-                .collection("user_info")
-                .doc(user_uid)
-                .set({
-                    uid: user_uid,
-                    id: user_email.substring(0, user_email.indexOf("@")),
-                    email: user_email,
-                });
-        }
         history.push("/");
     };
 
