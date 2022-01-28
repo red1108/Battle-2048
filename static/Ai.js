@@ -11,7 +11,7 @@ let random_per = 0.08;
 
 async function loadModel(level) {
     if(level == undefined) level = 1;
-    model_url = "http://localhost:80/models/day" + level + "/model.json";
+    model_url = "http://battle2048.com/models/day" + level + "/model.json";
     model = await tf.loadLayersModel(model_url);
     console.log(model_url);
 }
