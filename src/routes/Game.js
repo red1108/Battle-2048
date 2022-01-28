@@ -111,7 +111,7 @@ class Game extends React.Component {
 
         listDocRef.get().then((doc) => {
             if (doc.exists && doc.data().maxDays < this.listLevel) {
-                history.push("/list");
+                history.push("/list/" + doc.data().maxDays.toString());
             }
         });
 

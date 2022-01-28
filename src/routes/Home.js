@@ -157,6 +157,20 @@ class Home extends React.Component {
             document.getElementById("home-score").style.width = this.state.canvasWidth / 2;
             document.getElementById("home-score").style.backgroundColor = "#bbaca1";
         }
+        let ins = document.createElement("ins");
+        let scr = document.createElement("script");
+
+        ins.className = "kakao_ad_area";
+        ins.style = "display:none;";
+        scr.async = "true";
+        scr.type = "text/javascript";
+        scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+        ins.setAttribute("data-ad-width", "160");
+        ins.setAttribute("data-ad-height", "600");
+        ins.setAttribute("data-ad-unit", "DAN-CoRdUcj4FlNdrNGk");
+
+        document.querySelector(".adfit").appendChild(ins);
+        document.querySelector(".adfit").appendChild(scr);
     }
 
     handleAction(action) {
@@ -290,6 +304,7 @@ class Home extends React.Component {
                     <Link to="/game">
                         <div className="home-learnbutton">learn more</div>
                     </Link>
+                    <div className="adfit" />
                 </>
             );
         }

@@ -155,6 +155,16 @@ ul {
     z-index: 2;
 }
 
+.adfit {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin: 0 auto;
+    background-color: #e2d8d0;
+    flex-direction: column;
+    z-index: 3;
+}
+
 #mhome-score {
     display: flex;
     justify-content: center;
