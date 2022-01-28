@@ -14,7 +14,7 @@ import { dbService } from "../fbase";
 import ReactRouterPropTypes from "react-router-prop-types";
 
 var constants = require("../helpers/Constants.js");
-const playerColor = constants.player_color;
+const playerColor = constants.player_color[0];
 const playerTextColor = constants.player_text_color;
 
 // install Swiper modules

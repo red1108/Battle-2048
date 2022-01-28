@@ -29,9 +29,8 @@ class Home extends React.Component {
 
         const isMobile = window.innerWidth <= window.innerHeight * 0.84;
         const canvasWidth = isMobile ? window.innerWidth * 0.524 : window.innerHeight * 0.491;
-        this.setState({
-            canvasWidth: canvasWidth,
-        });
+        let color_theme = 0;
+        if (Math.random() < 0.3) color_theme = 1;
 
         this.state = {
             history: [
@@ -45,6 +44,7 @@ class Home extends React.Component {
             canvas: document.getElementById("canvas"),
             canvasWidth: canvasWidth,
             canvasHeight: canvasWidth,
+            theme: color_theme,
         };
 
         let tmp = this;
@@ -133,14 +133,14 @@ class Home extends React.Component {
             document.getElementById("home-score").style.width = this.state.canvasWidth / 2;
             document.getElementById("home-score").style.backgroundColor = "#bbaca1";
         }
-        drawState(this.canvasRef.current, this.state.history[this.state.index].squares);
+        drawState(this.canvasRef.current, this.state.history[this.state.index].squares, this.state.theme);
     }
 
     componentDidMount() {
         const isMobile = window.innerWidth <= window.innerHeight * 0.84;
         //this.renderText("Welcome to Battle 2048", 50, "text1");
         this.ctx = this.canvasRef.current.getContext("2d");
-        drawState(this.canvasRef.current, this.state.history[this.state.index].squares);
+        drawState(this.canvasRef.current, this.state.history[this.state.index].squares, this.state.theme);
         const nxt = this.state.history[this.state.index].squares;
         if (this.state.winner === null) {
             setTimeout(() => model1.postMessage({ type: "state", state: nxt }), 1000);
@@ -215,7 +215,7 @@ class Home extends React.Component {
             winner: winner,
         });
 
-        animationPath(this.canvasRef.current, current.squares, paths, nxt);
+        animationPath(this.canvasRef.current, current.squares, paths, nxt, this.state.theme);
         return true;
     }
 
@@ -248,9 +248,9 @@ class Home extends React.Component {
                         ></canvas>
                     </div>
                     <div id="mhome-score">
-                        <span style={{ color: playerColor[myBest] }}>{myScore}</span>
+                        <span style={{ color: playerColor[this.state.theme][myBest] }}>{myScore}</span>
                         <span>&nbsp;&nbsp;Score&nbsp;&nbsp;</span>
-                        <span style={{ color: aiColor[aiBest] }}>{aiScore}</span>
+                        <span style={{ color: aiColor[this.state.theme][aiBest] }}>{aiScore}</span>
                     </div>
                     <div className="mhome-hello">Hello!</div>
                     <div className="mhome-text1">
@@ -283,9 +283,9 @@ class Home extends React.Component {
                         ></canvas>
                     </div>
                     <div id="home-score">
-                        <span style={{ color: playerColor[myBest] }}>{myScore}</span>
+                        <span style={{ color: playerColor[this.state.theme][myBest] }}>{myScore}</span>
                         <span>&nbsp;&nbsp;Score&nbsp;&nbsp;</span>
-                        <span style={{ color: aiColor[aiBest] }}>{aiScore}</span>
+                        <span style={{ color: aiColor[this.state.theme][aiBest] }}>{aiScore}</span>
                     </div>
                     <div className="home-hello">Hello!</div>
                     <div className="home-text1">

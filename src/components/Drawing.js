@@ -4,14 +4,6 @@ const map_size = constants.map_size;
 let padding = constants.block_padding;
 let square_round = constants.block_round;
 
-let color_theme = 0;
-if (Math.random() < 0.3) color_theme = 1;
-
-const playerColor = constants.player_color[color_theme];
-const playerTextColor = constants.player_text_color;
-const aiColor = constants.ai_color[color_theme];
-const aiTextColor = constants.ai_text_color;
-
 CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius) {
     if (width < 2 * radius) radius = width / 2;
     if (height < 2 * radius) radius = height / 2;
@@ -57,13 +49,18 @@ function calculateText(width) {
     return [fontSize, fontBais];
 }
 
-export function drawState(canvas, state) {
+export function drawState(canvas, state, color_theme) {
     const ctx = canvas.getContext("2d");
     const [fontSize, fontBias] = calculateText(canvas.width);
 
     ctx.textAlign = "center";
     ctx.font = fontSize + "px Arial";
     const square_size = (canvas.width - padding * (map_size + 1)) / map_size;
+
+    const playerColor = constants.player_color[color_theme];
+    const playerTextColor = constants.player_text_color;
+    const aiColor = constants.ai_color[color_theme];
+    const aiTextColor = constants.ai_text_color;
 
     //drawing grid
     drawGrid(canvas);
@@ -94,13 +91,18 @@ export function drawState(canvas, state) {
     }
 }
 
-export function animationPath(canvas, state, paths, next_state) {
+export function animationPath(canvas, state, paths, next_state, color_theme) {
     const ctx = canvas.getContext("2d");
     const [fontSize, fontBias] = calculateText(canvas.width);
 
     ctx.textAlign = "center";
     ctx.font = fontSize + "px Arial";
     const square_size = (canvas.width - padding * (map_size + 1)) / map_size;
+
+    const playerColor = constants.player_color[color_theme];
+    const playerTextColor = constants.player_text_color;
+    const aiColor = constants.ai_color[color_theme];
+    const aiTextColor = constants.ai_text_color;
 
     let frame = 40;
     let cur = 40;
@@ -135,7 +137,7 @@ export function animationPath(canvas, state, paths, next_state) {
         }
         if (cur == 0) {
             clearInterval(animate);
-            drawState(canvas, next_state);
+            drawState(canvas, next_state, color_theme);
         }
     }, 7);
 }

@@ -36,6 +36,9 @@ class Game extends React.Component {
         initial_state[map_size - 1] = 1; // AI
         initial_state[map_size * (map_size - 1)] = -1; //Player
 
+        let color_theme = 0;
+        if (Math.random() < 0.3) color_theme = 1;
+
         this.state = {
             history: [
                 {
@@ -46,6 +49,7 @@ class Game extends React.Component {
             winner: null,
             index: 0,
             canvas: document.getElementById("canvas"),
+            theme: color_theme,
         };
 
         const userDocRef = dbService.collection("user_info").doc(this.props.userObj.uid);
@@ -102,7 +106,7 @@ class Game extends React.Component {
             canvasHeight: canvasWidth,
         });
 
-        drawState(this.canvasRef.current, this.state.history[this.state.index].squares);
+        drawState(this.canvasRef.current, this.state.history[this.state.index].squares, this.state.theme);
     }
 
     componentDidMount() {
@@ -116,7 +120,7 @@ class Game extends React.Component {
         });
 
         this.ctx = this.canvasRef.current.getContext("2d");
-        drawState(this.canvasRef.current, this.state.history[this.state.index].squares);
+        drawState(this.canvasRef.current, this.state.history[this.state.index].squares, this.state.theme);
 
         window.addEventListener("keydown", (e) => this.handleKeyboard(e));
         window.addEventListener(
@@ -256,9 +260,9 @@ class Game extends React.Component {
 
         const [myBest, aiBest] = calculateMax(nxt);
         document.getElementById("you-score").style.color = playerTextColor[myBest];
-        document.getElementById("you-score").style.backgroundColor = playerColor[myBest];
+        document.getElementById("you-score").style.backgroundColor = playerColor[this.state.theme][myBest];
         document.getElementById("ai-score").style.color = aiTextColor[aiBest];
-        document.getElementById("ai-score").style.backgroundColor = aiColor[aiBest];
+        document.getElementById("ai-score").style.backgroundColor = aiColor[this.state.theme][aiBest];
 
         this.setState({
             history: history.concat([
@@ -271,7 +275,7 @@ class Game extends React.Component {
             winner: winner,
         });
 
-        animationPath(this.canvasRef.current, current.squares, paths, nxt);
+        animationPath(this.canvasRef.current, current.squares, paths, nxt, this.state.theme);
         return true;
     }
 
