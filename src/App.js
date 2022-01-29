@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Home from "./routes/Home";
+import Learn from "./routes/Learn";
 import Game from "./routes/Game";
 import List from "./routes/List";
 import Auth from "./routes/Auth";
@@ -43,6 +44,7 @@ function App() {
                 </Link>
                 <Navbar></Navbar>
                 <Route path="/" exact={true} component={Home} />
+                <Route path="/learn" exact={true} component={Learn} />
                 <PrivateRoute path="/game" component={Game} isLoggedIn={isLoggedIn} userObj={userObj} />
                 <PrivateRoute exact={true} path="/list" component={List} />
                 <PrivateRoute path="/list/:id" component={Game} isLoggedIn={isLoggedIn} userObj={userObj} />

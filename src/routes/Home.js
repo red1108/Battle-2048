@@ -280,7 +280,7 @@ class Home extends React.Component {
                     <Link to="/game">
                         <div className="mhome-playbutton">play</div>
                     </Link>
-                    <Link to="/game">
+                    <Link to="/learn">
                         <div className="mhome-learnbutton">learn more</div>
                     </Link>
                     <div className="madfit" />
@@ -316,7 +316,7 @@ class Home extends React.Component {
                     <Link to="/game">
                         <div className="home-playbutton">play</div>
                     </Link>
-                    <Link to="/game">
+                    <Link to="/learn">
                         <div className="home-learnbutton">learn more</div>
                     </Link>
                     <div className="adfit" />
