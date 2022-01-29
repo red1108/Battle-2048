@@ -160,17 +160,31 @@ class Home extends React.Component {
         let ins = document.createElement("ins");
         let scr = document.createElement("script");
 
-        ins.className = "kakao_ad_area";
-        ins.style = "display:none;";
-        scr.async = "true";
-        scr.type = "text/javascript";
-        scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
-        ins.setAttribute("data-ad-width", "160");
-        ins.setAttribute("data-ad-height", "600");
-        ins.setAttribute("data-ad-unit", "DAN-CoRdUcj4FlNdrNGk");
+        if (isMobile) {
+            ins.className = "kakao_ad_area";
+            ins.style = "display:none;";
+            scr.async = "true";
+            scr.type = "text/javascript";
+            scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+            ins.setAttribute("data-ad-width", "320");
+            ins.setAttribute("data-ad-height", "50");
+            ins.setAttribute("data-ad-unit", "DAN-Qsczy4q6rY9wbwdE");
 
-        document.querySelector(".adfit").appendChild(ins);
-        document.querySelector(".adfit").appendChild(scr);
+            document.querySelector(".madfit").appendChild(ins);
+            document.querySelector(".madfit").appendChild(scr);
+        } else {
+            ins.className = "kakao_ad_area";
+            ins.style = "display:none;";
+            scr.async = "true";
+            scr.type = "text/javascript";
+            scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+            ins.setAttribute("data-ad-width", "320");
+            ins.setAttribute("data-ad-height", "50");
+            ins.setAttribute("data-ad-unit", "DAN-Qsczy4q6rY9wbwdE");
+
+            document.querySelector(".adfit").appendChild(ins);
+            document.querySelector(".adfit").appendChild(scr);
+        }
     }
 
     handleAction(action) {
@@ -269,6 +283,7 @@ class Home extends React.Component {
                     <Link to="/game">
                         <div className="mhome-learnbutton">learn more</div>
                     </Link>
+                    <div className="madfit" />
                 </>
             );
         } else {
