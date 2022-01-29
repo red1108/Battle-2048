@@ -56,7 +56,6 @@ function update_layout() {
         h = window.innerHeight;
     const isPc = h * 1.21 <= w;
     if (isPc) {
-        console.log("h = ", h, "w = ", w);
         const image1_w = h * 0.55;
         const image2_w = h * 0.65;
         const image1_h = (image1_w * 645) / 600;
