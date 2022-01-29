@@ -60,7 +60,7 @@ function update_layout() {
         const image1_w = h * 0.55;
         const image2_w = h * 0.65;
         const image1_h = (image1_w * 645) / 600;
-        const image2_h = (image2_w * 732) / 600;
+        const image2_h = (image2_w * 732) / 700;
         const image1_ml = Math.round(w * 0.25 - image1_w / 2);
         const image2_ml = Math.round(w * 0.75 - image2_w / 2);
         const image1_bottom = Math.round(h * 0.1) + image1_h;
@@ -95,7 +95,7 @@ function update_layout() {
         const image1_w = w * 0.6;
         const image2_w = w * 0.7;
         const image1_h = (image1_w * 645) / 600;
-        const image2_h = (image2_w * 732) / 600;
+        const image2_h = (image2_w * 732) / 700;
         const image1_ml = Math.round(w * 0.5 - image1_w / 2);
         const image2_ml = Math.round(w * 0.53 - image2_w / 2);
 
