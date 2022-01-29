@@ -30,6 +30,9 @@ const Profile = ({ userObj }) => {
 
     return (
         <center>
+            <button id="logoutBtn" onClick={onLogOutClick}>
+                Log Out
+            </button>
             <div>
                 {records.map((record) => (
                     <div key={record.id}>
@@ -40,9 +43,6 @@ const Profile = ({ userObj }) => {
                     </div>
                 ))}
             </div>
-            <button id="logoutBtn" onClick={onLogOutClick}>
-                Log Out
-            </button>
         </center>
     );
 };

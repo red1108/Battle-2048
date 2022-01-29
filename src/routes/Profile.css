@@ -3,11 +3,13 @@
     font-weight: bold;
     font-size: 2vw;
     color: #796c65;
+    margin: 10px;
 }
 
 #logoutBtn {
     display: flex;
     background-color: #1c2833;
+    top: 3%;
     width: 10%;
     height: 5%;
     justify-content: center;
@@ -17,4 +19,5 @@
     font-weight: bold;
     border-radius: 5px;
     align-items: center;
+    margin: 10px;
 }

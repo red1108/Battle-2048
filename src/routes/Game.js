@@ -331,6 +331,28 @@ class Game extends React.Component {
                 <h1 id="game-info">
                     <div>{message}</div>
                 </h1>
+                <iframe
+                    src="https://coupa.ng/cbNsZs"
+                    id="coupang-left-ads"
+                    width="120"
+                    height="240"
+                    frameBorder="0"
+                    scrolling="no"
+                    referrerpolicy="unsafe-url"
+                />
+                <iframe
+                    src="https://coupa.ng/cbNsUM"
+                    id="coupang-right-ads"
+                    width="120"
+                    height="240"
+                    frameBorder="0"
+                    scrolling="no"
+                    referrerpolicy="unsafe-url"
+                />
+
+                <div id="coupang-text">
+                    이 서비스는 쿠팡파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 받을 수 있습니다.
+                </div>
             </div>
         );
     }
@@ -388,6 +410,19 @@ function update_layout() {
     gameInfo.style.fontSize = Math.round((40 * canvasSize) / 500) + "px";
     gameInfo.style.marginLeft = Math.round((w - canvasSize) / 2 + canvasSize * 0.3) + "px";
     gameInfo.style.marginTop = Math.round(h / 2 + canvasSize * 0.45) + "px";
+
+    const leftAds = document.getElementById("coupang-left-ads");
+    leftAds.style.marginLeft = "0px";
+    leftAds.style.marginTop = Math.round((h - 240) / 2) + "px";
+
+    const rightAds = document.getElementById("coupang-right-ads");
+    rightAds.style.marginLeft = Math.round(w - 120) + "px";
+    rightAds.style.marginTop = Math.round((h - 240) / 2) + "px";
+
+    const coupangText = document.getElementById("coupang-text");
+    coupangText.style.fontSize = Math.round(h * 0.015) + "px";
+    coupangText.style.marginLeft = Math.round(w * 0.5 - h * 0.29) + "px";
+    coupangText.style.marginTop = Math.round(h * 0.75 + canvasSize * 0.45) + "px";
 }
 
 function getTouches(evt) {
