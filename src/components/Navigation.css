@@ -2,15 +2,15 @@
     position: absolute;
     top: 3%;
     right: 5%;
+    height: 4vh;
 }
 
 .m-item {
     position: absolute;
-    top: 0;
     right: 0;
 
     width: 6vh;
-
+    height: 4vh;
     padding: 0.2vw;
 
     border-radius: 1vw;
@@ -21,14 +21,15 @@
 
     transition: 1s;
     color: #1c2833;
-    font-size: 1.5vh;
+    font-size: 2vh;
+    font-family: Calibri;
+    font-weight: bold;
     z-index: 2;
 }
 
 .m-logo {
     background-color: #e2d8d0;
     position: absolute;
-    top: 0;
     right: 0;
 
     width: 6vh;
@@ -47,16 +48,16 @@
 }
 
 .open-1 {
-    right: 22.4vw;
+    right: 24vw;
 }
 .open-2 {
-    right: 16.8vw;
+    right: 18vw;
 }
 .open-3 {
-    right: 11.2vw;
+    right: 12vw;
 }
 .open-4 {
-    right: 5.6vw;
+    right: 6vw;
 }
 
 .mopen-1 {

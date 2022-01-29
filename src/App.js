@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Home from "./routes/Home";
 import Game from "./routes/Game";
 import List from "./routes/List";
@@ -32,6 +33,14 @@ function App() {
     } else {
         return (
             <Router>
+                <Link to="/">
+                    <img
+                        className="logo"
+                        src="https://user-images.githubusercontent.com/17401630/130216085-ed20bedc-922c-40ec-945b-026f5fa4dbb0.png"
+                        height="90"
+                        width="200"
+                    />
+                </Link>
                 <Navbar></Navbar>
                 <Route path="/" exact={true} component={Home} />
                 <PrivateRoute path="/game" component={Game} isLoggedIn={isLoggedIn} userObj={userObj} />
