@@ -37,7 +37,7 @@ class Game extends React.Component {
         initial_state[map_size * (map_size - 1)] = -1; //Player
 
         let color_theme = 0;
-        if (Math.random() < 0.3) color_theme = 1;
+        if (Math.random() < 0.05) color_theme = 1;
 
         this.state = {
             history: [
@@ -137,6 +137,8 @@ class Game extends React.Component {
         document.addEventListener("touchstart", handleTouchStart, false);
         document.addEventListener("touchmove", (e) => this.handleTouchMove(e), false);
 
+        document.getElementById("you-score").style.backgroundColor = playerColor[this.state.theme][1];
+        document.getElementById("ai-score").style.backgroundColor = aiColor[this.state.theme][1];
         update_layout();
     }
 
