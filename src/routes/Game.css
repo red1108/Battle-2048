@@ -106,3 +106,16 @@ body {
     position: absolute;
     border-radius: 3%;
 }
+
+#coupang-left-ads {
+    position: absolute;
+}
+
+#coupang-right-ads {
+    position: absolute;
+}
+
+#coupang-text {
+    position: absolute;
+    color: #796c65;
+}
