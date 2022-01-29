@@ -157,8 +157,8 @@ ul {
 
 .adfit {
     position: absolute;
-    top: 20%;
-    left: 50%;
+    bottom: 0%;
+    left: 0%;
     margin: 0 auto;
     background-color: #e2d8d0;
     flex-direction: column;
@@ -259,4 +259,15 @@ ul {
     font-weight: bold;
     border-radius: 5px;
     align-items: center;
+}
+
+.madfit {
+    position: absolute;
+    bottom: 5%;
+    margin: 0 auto;
+    background-color: #e2d8d0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
 }
