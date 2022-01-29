@@ -1,0 +1,20 @@
+.profile-history{
+    font-family: Calibri;
+    font-weight: bold;
+    font-size: 2vw;
+    color: #796c65;
+}
+
+#logoutBtn {
+    display: flex;
+    background-color: #1c2833;
+    width: 10%;
+    height: 5%;
+    justify-content: center;
+    color: #fff;
+    font-size: 2vw;
+    font-family: Calibri;
+    font-weight: bold;
+    border-radius: 5px;
+    align-items: center;
+}

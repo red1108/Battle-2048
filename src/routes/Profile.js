@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { authService, dbService } from "../fbase";
 import PropTypes from "prop-types";
+import "./Profile.css";
 
 const Profile = ({ userObj }) => {
     const history = useHistory();
@@ -32,14 +33,16 @@ const Profile = ({ userObj }) => {
             <div>
                 {records.map((record) => (
                     <div key={record.id}>
-                        <h4>
+                        <h4 className="profile-history">
                             {record.winner ? "Win" : "Lose"} {record.myScore}:{record.aiScore}
                         </h4>
-                        <h4>When: {record.endedAt}</h4>
+                        <h4 className="profile-history">When: {record.endedAt}</h4>
                     </div>
                 ))}
             </div>
-            <button onClick={onLogOutClick}>Log Out</button>
+            <button id="logoutBtn" onClick={onLogOutClick}>
+                Log Out
+            </button>
         </center>
     );
 };
