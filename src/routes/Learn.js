@@ -120,7 +120,7 @@ function update_layout() {
         btn.style.width = Math.round(w * 0.13) + "px";
         btn.style.height = Math.round(w * 0.13 * 0.4) + "px";
         btn.style.marginLeft = Math.round(w * 0.53) + "px";
-        btn.style.fontSize = Math.round(h * 0.04) + "px";
+        btn.style.fontSize = Math.round(h * 0.025) + "px";
         btn.style.marginTop = Math.round(h * 0.26 + image1_h + image2_h) + "px";
 
         const learnPage = document.getElementById("learn-main");
