@@ -30,7 +30,7 @@ class Home extends React.Component {
         const isMobile = window.innerWidth <= window.innerHeight * 0.84;
         const canvasWidth = isMobile ? window.innerWidth * 0.524 : window.innerHeight * 0.491;
         let color_theme = 0;
-        if (Math.random() < 0.3) color_theme = 1;
+        if (Math.random() < 0.05) color_theme = 1;
 
         this.state = {
             history: [
