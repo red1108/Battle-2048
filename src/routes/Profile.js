@@ -29,7 +29,7 @@ const Profile = ({ userObj }) => {
     }, []);
 
     return (
-        <center>
+        <center className="profile">
             <button id="logoutBtn" onClick={onLogOutClick}>
                 Log Out
             </button>

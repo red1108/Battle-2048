@@ -1,4 +1,9 @@
-.profile-history{
+.profile {
+    top: 5%;
+    position: relative;
+}
+
+.profile-history {
     font-family: Calibri;
     font-weight: bold;
     font-size: 2vw;
@@ -9,7 +14,7 @@
 #logoutBtn {
     display: flex;
     background-color: #1c2833;
-    top: 3%;
+    top: 50px;
     width: 10%;
     height: 5%;
     justify-content: center;
