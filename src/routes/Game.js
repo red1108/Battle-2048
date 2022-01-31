@@ -231,11 +231,12 @@ class Game extends React.Component {
         else if (myScore * 10 <= aiScore) winner = false;
 
         if (winner !== null) {
+            const now = new Date();
             dbService.collection("game_record").add({
                 winner: winner,
                 myScore: myScore,
                 aiScore: aiScore,
-                endedAt: Date.now(),
+                endedAt: now.toLocaleString(),
                 userUid: this.props.userObj.uid,
             });
             if (winner === true) {
