@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Auth.css";
 import { authService, firebaseInstance, dbService } from "../fbase";
 import { useHistory } from "react-router";
+import ReactGA from "react-ga";
 
 const Auth = () => {
     const [id, setId] = useState("");
@@ -40,6 +41,10 @@ const Auth = () => {
         }
         return true;
     };
+
+    useEffect(() => {
+        updateGA();
+    }, []);
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -202,4 +207,13 @@ const Auth = () => {
         );
     }
 };
+
+function updateGA() {
+    // google analytics - auth
+    const pathName = "auth";
+    ReactGA.initialize("UA-218917298-1");
+    ReactGA.set({ page: pathName });
+    ReactGA.pageview(pathName);
+}
+
 export default Auth;

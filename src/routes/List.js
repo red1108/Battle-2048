@@ -2,6 +2,9 @@ import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Google Analytics
+import ReactGA from "react-ga";
+
 // Import Swiper styles
 import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css";
@@ -58,6 +61,12 @@ class List extends React.Component {
     }
 
     componentDidMount() {
+        // google analytics - list
+        const pathName = "list";
+        ReactGA.initialize("UA-218917298-1");
+        ReactGA.set({ page: pathName });
+        ReactGA.pageview(pathName);
+
         let h = window.innerHeight;
         document.getElementById("list-inside").style.paddingTop = Math.round(h / 10) + "px";
         const [colNum, rowNum] = calculate_layout();
