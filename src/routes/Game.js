@@ -7,6 +7,7 @@ import MyRecorder from "../components/Recorder";
 import { dbService } from "../fbase";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
+import ReactGA from "react-ga";
 
 var constants = require("../helpers/Constants.js");
 const playerColor = constants.player_color;
@@ -110,6 +111,11 @@ class Game extends React.Component {
     }
 
     componentDidMount() {
+        const pathName = "game";
+        ReactGA.initialize("UA-218917298-1");
+        ReactGA.set({ page: pathName });
+        ReactGA.pageview(pathName);
+
         const listDocRef = dbService.collection("list_info").doc("clear_array");
         const { history } = this.props;
 

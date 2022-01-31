@@ -1,6 +1,7 @@
 import React from "react";
 import "./Learn.css";
 import { Link } from "react-router-dom";
+import ReactGA from "react-ga";
 
 /*
 var constants = require("../helpers/Constants.js");
@@ -28,6 +29,11 @@ class Learn extends React.Component {
     }
 
     componentDidMount() {
+        // google analytics - learn
+        const pathName = "learn";
+        ReactGA.initialize("UA-218917298-1");
+        ReactGA.set({ page: pathName });
+        ReactGA.pageview(pathName);
         update_layout();
     }
 

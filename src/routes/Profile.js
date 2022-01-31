@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { authService, dbService } from "../fbase";
 import PropTypes from "prop-types";
+import ReactGA from "react-ga";
 import "./Profile.css";
 
 const Profile = ({ userObj }) => {
@@ -26,6 +27,7 @@ const Profile = ({ userObj }) => {
 
     useEffect(() => {
         getGameRecord();
+        updateGA();
     }, []);
 
     return (
@@ -50,5 +52,13 @@ const Profile = ({ userObj }) => {
 Profile.propTypes = {
     userObj: PropTypes.object.isRequired,
 };
+
+function updateGA() {
+    // google analytics - learn
+    const pathName = "profile";
+    ReactGA.initialize("UA-218917298-1");
+    ReactGA.set({ page: pathName });
+    ReactGA.pageview(pathName);
+}
 
 export default Profile;

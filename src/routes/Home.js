@@ -3,6 +3,7 @@ import "./Home.css";
 import { calcResult, calculateScore, calculateMax, isStuck } from "../components/Logic.js";
 import { drawState, animationPath } from "../components/Drawing.js";
 import { Link } from "react-router-dom";
+import ReactGA from "react-ga";
 
 var constants = require("../helpers/Constants.js");
 const playerColor = constants.player_color;
@@ -137,6 +138,12 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        // google analytics - home
+        const pathName = "home";
+        ReactGA.initialize("UA-218917298-1");
+        ReactGA.set({ page: pathName });
+        ReactGA.pageview(pathName);
+
         const isMobile = window.innerWidth <= window.innerHeight * 0.84;
         //this.renderText("Welcome to Battle 2048", 50, "text1");
         this.ctx = this.canvasRef.current.getContext("2d");
