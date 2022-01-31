@@ -12,6 +12,7 @@ import "./listStyles.css";
 import SwiperCore, { Pagination } from "swiper/core";
 import { dbService } from "../fbase";
 import ReactRouterPropTypes from "react-router-prop-types";
+import PropTypes from "prop-types";
 
 var constants = require("../helpers/Constants.js");
 const playerColor = constants.player_color[0];
@@ -52,7 +53,6 @@ class List extends React.Component {
                 </SwiperSlide>
             );
         });
-
         window.onresize = (e) => this.handleResize(e);
         //window.addEventListener('resize', (e)=>this.handleResize(e));
     }
@@ -66,13 +66,13 @@ class List extends React.Component {
             colNum: colNum,
             rowNum: rowNum,
         });
-        update_layout();
+        update_layout(this.props.userObj.uid);
     }
 
     handleResize() {
         let h = window.innerHeight;
         document.getElementById("list-inside").style.paddingTop = Math.round(h / 10) + "px";
-        update_layout();
+        update_layout(this.props.userObj.uid);
 
         const [rowNum, colNum] = calculate_layout();
         this.setState({
@@ -135,7 +135,7 @@ function calculate_layout() {
     return [rowNum, colNum];
 }
 
-function update_layout() {
+function update_layout(uid) {
     let w = window.innerWidth,
         h = window.innerHeight;
     const [rowNum, colNum] = calculate_layout();
@@ -158,40 +158,44 @@ function update_layout() {
             }
         }
     });
-    for (let i = 0; i < contents.length; i++) {
-        contents[i].style.width = size + "px";
-        contents[i].style.height = size + "px";
-        const dayNumber = contents[i].getElementsByClassName("day-number")[0];
-        const num = Number(dayNumber.textContent);
-        const clearedHead = contents[i].getElementsByClassName("cleared-head")[0];
-        const clearedNum = contents[i].getElementsByClassName("cleared-number")[0];
-        const clearedImg = contents[i].getElementsByClassName("cleared-image")[0];
-        contents[i].style.background = playerColor[Math.floor((num - 1) / 10) + 1];
-        dayNumber.style.color = playerTextColor[Math.floor((num - 1) / 10) + 1];
-        clearedHead.style.color = playerTextColor[Math.floor((num - 1) / 10) + 1];
-        clearedNum.style.color = playerTextColor[Math.floor((num - 1) / 10) + 1];
 
-        if (num < 10) {
-            dayNumber.style.fontSize = Math.round(size * 0.7) + "px";
-            clearedHead.style.marginTop = "63%";
-        } else {
-            dayNumber.style.fontSize = Math.round(size * 0.6) + "px";
-            dayNumber.style.marginTop = "0%";
-            dayNumber.style.marginLeft = "17%";
-            clearedHead.style.marginTop = "63%";
-        }
-        clearedNum.style.marginTop = "76%";
-        clearedNum.style.marginLeft = "45%";
-        clearedHead.style.fontSize = Math.round(size * 0.12) + "px";
-        clearedNum.style.fontSize = Math.round(size * 0.18) + "px";
+    const userDocRef = dbService.collection("user_info").doc(uid);
+    userDocRef.get().then((doc) => {
+        for (let i = 0; i < contents.length; i++) {
+            contents[i].style.width = size + "px";
+            contents[i].style.height = size + "px";
+            const dayNumber = contents[i].getElementsByClassName("day-number")[0];
+            const num = Number(dayNumber.textContent);
+            const clearedHead = contents[i].getElementsByClassName("cleared-head")[0];
+            const clearedNum = contents[i].getElementsByClassName("cleared-number")[0];
+            const clearedImg = contents[i].getElementsByClassName("cleared-image")[0];
+            contents[i].style.background = playerColor[Math.floor((num - 1) / 10) + 1];
+            dayNumber.style.color = playerTextColor[Math.floor((num - 1) / 10) + 1];
+            clearedHead.style.color = playerTextColor[Math.floor((num - 1) / 10) + 1];
+            clearedNum.style.color = playerTextColor[Math.floor((num - 1) / 10) + 1];
 
-        //Test code
-        if (num > 25) {
-            clearedImg.style.visibility = "hidden";
+            if (num < 10) {
+                dayNumber.style.fontSize = Math.round(size * 0.7) + "px";
+                clearedHead.style.marginTop = "63%";
+            } else {
+                dayNumber.style.fontSize = Math.round(size * 0.6) + "px";
+                dayNumber.style.marginTop = "0%";
+                dayNumber.style.marginLeft = "17%";
+                clearedHead.style.marginTop = "63%";
+            }
+            clearedNum.style.marginTop = "76%";
+            clearedNum.style.marginLeft = "45%";
+            clearedHead.style.fontSize = Math.round(size * 0.12) + "px";
+            clearedNum.style.fontSize = Math.round(size * 0.18) + "px";
+
+            if (num > doc.data().level) {
+                clearedImg.style.visibility = "hidden";
+            }
         }
-    }
+    });
 }
 
 List.propTypes = {
+    userObj: PropTypes.object.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
 };

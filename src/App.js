@@ -46,7 +46,7 @@ function App() {
                 <Route path="/" exact={true} component={Home} />
                 <Route path="/learn" exact={true} component={Learn} />
                 <PrivateRoute path="/game" component={Game} isLoggedIn={isLoggedIn} userObj={userObj} />
-                <PrivateRoute exact={true} path="/list" component={List} />
+                <PrivateRoute exact={true} path="/list" component={List} isLoggedIn={isLoggedIn} userObj={userObj} />
                 <PrivateRoute path="/list/:id" component={Game} isLoggedIn={isLoggedIn} userObj={userObj} />
                 <Route path="/auth" component={Auth} />
                 <PrivateRoute path="/profile" component={Profile} isLoggedIn={isLoggedIn} userObj={userObj} />
