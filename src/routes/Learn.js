@@ -58,7 +58,7 @@ function update_layout() {
     if (isPc) {
         const image1_w = h * 0.55;
         const image2_w = h * 0.65;
-        const image1_h = (image1_w * 645) / 600;
+        const image1_h = (image1_w * 645) / 700;
         const image2_h = (image2_w * 732) / 700;
         const image1_ml = Math.round(w * 0.25 - image1_w / 2);
         const image2_ml = Math.round(w * 0.75 - image2_w / 2);

@@ -36,10 +36,10 @@ ul {
 }
 
 #home-score {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     top: 89.3%;
     height: 6.38%;
     text-align: center;
