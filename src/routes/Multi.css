@@ -1,0 +1,307 @@
+body {
+    margin: 20px;
+    padding: 0;
+    font-family: sans-serif;
+    font: 14px;
+    background: #e2d8d0;
+}
+
+.totitle {
+    display: flex;
+    position: absolute;
+    top: 15%;
+    left: 45%;
+    width: 10%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2vw;
+    font-family: Calibri;
+    font-weight: bold;
+    color: #796c65;
+}
+
+.toid {
+    position: absolute;
+    top: 28.7%;
+    left: 32%;
+    width: 36%;
+    height: 8.5%;
+    font-size: 1.2vw;
+    border-radius: 10px;
+    border-style: hidden;
+}
+
+.topw {
+    position: absolute;
+    top: 39.3%;
+    left: 32%;
+    width: 36%;
+    height: 8.5%;
+    font-size: 1.2vw;
+    border-radius: 10px;
+    border-style: hidden;
+}
+
+.toswitch {
+    display: flex;
+    position: absolute;
+    top: 48.4%;
+    left: 46.25%;
+    width: 7.5%;
+    height: 5.3%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.tosubmit {
+    position: absolute;
+    top: 55%;
+    left: 42.5%;
+    width: 15%;
+    height: 6.38%;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2vw;
+}
+
+.toerror {
+    display: flex;
+    position: absolute;
+    top: 65%;
+    left: 0%;
+    width: 100%;
+    color: red;
+    font-weight: bold;
+    font-size: 0.3vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.maketitle {
+    display: flex;
+    position: absolute;
+    top: 15%;
+    left: 45%;
+    width: 10%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2vw;
+    font-family: Calibri;
+    font-weight: bold;
+    color: #796c65;
+}
+
+.makeid {
+    position: absolute;
+    top: 28.7%;
+    left: 32%;
+    width: 36%;
+    height: 8.5%;
+    font-size: 1.2vw;
+    border-radius: 10px;
+    border-style: hidden;
+}
+
+.makepw {
+    position: absolute;
+    top: 39.3%;
+    left: 32%;
+    width: 36%;
+    height: 8.5%;
+    font-size: 1.2vw;
+    border-radius: 10px;
+    border-style: hidden;
+}
+
+.makeswitch {
+    display: flex;
+    position: absolute;
+    top: 48.4%;
+    left: 46.25%;
+    width: 7.5%;
+    height: 5.3%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.makesubmit {
+    position: absolute;
+    top: 55%;
+    left: 42.5%;
+    width: 15%;
+    height: 6.38%;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2vw;
+}
+
+.makeerror {
+    display: flex;
+    position: absolute;
+    top: 65%;
+    left: 0%;
+    width: 100%;
+    color: red;
+    font-weight: bold;
+    font-size: 0.3vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.mtotitle {
+    display: flex;
+    position: absolute;
+    top: 15%;
+    left: 35%;
+    width: 30%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2vh;
+    font-family: Calibri;
+    font-weight: bold;
+    color: #796c65;
+}
+
+.mtoid {
+    position: absolute;
+    top: 28.7%;
+    left: 14%;
+    width: 72%;
+    height: 8.5%;
+    font-size: 1.2vh;
+    border-radius: 10px;
+    border-style: hidden;
+}
+
+.mtopw {
+    position: absolute;
+    top: 39.3%;
+    left: 14%;
+    width: 72%;
+    height: 8.5%;
+    font-size: 1.2vh;
+    border-radius: 10px;
+    border-style: hidden;
+}
+
+.mtoswitch {
+    display: flex;
+    position: absolute;
+    top: 48.4%;
+    left: 42.5%;
+    width: 15%;
+    height: 5.3%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.mtosubmit {
+    position: absolute;
+    top: 55%;
+    left: 35%;
+    width: 30%;
+    height: 6.38%;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2vh;
+}
+
+.mtoerror {
+    display: flex;
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    width: 80%;
+    color: red;
+    font-weight: bold;
+    font-size: 1vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.mmaketitle {
+    display: flex;
+    position: absolute;
+    top: 15%;
+    left: 35%;
+    width: 30%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2vh;
+    font-family: Calibri;
+    font-weight: bold;
+    color: #796c65;
+}
+
+.mmakeid {
+    position: absolute;
+    top: 28.7%;
+    left: 14%;
+    width: 72%;
+    height: 8.5%;
+    font-size: 1.2vh;
+    border-radius: 10px;
+    border-style: hidden;
+}
+
+.mmakepw {
+    position: absolute;
+    top: 39.3%;
+    left: 14%;
+    width: 72%;
+    height: 8.5%;
+    font-size: 1.2vh;
+    border-radius: 10px;
+    border-style: hidden;
+}
+
+.mmakeswitch {
+    display: flex;
+    position: absolute;
+    top: 48.4%;
+    left: 42.5%;
+    width: 15%;
+    height: 5.3%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.mmakesubmit {
+    position: absolute;
+    top: 55%;
+    left: 35%;
+    width: 30%;
+    height: 6.38%;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2vh;
+}
+
+.mmakeerror {
+    display: flex;
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    width: 80%;
+    color: red;
+    font-weight: bold;
+    font-size: 1vh;
+    justify-content: center;
+    align-items: center;
+}

@@ -31,6 +31,15 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("user disconnected");
     });
+
+    socket.on("movetoserver", (roomid, uid, action, winner, row, col, val) => {
+        console.log(uid);
+        io.to(roomid).emit("movetoclient", uid, action, winner, row, col, val);
+    });
+
+    socket.on("roomjoin", (roomid) => {
+        socket.join(roomid);
+    });
 });
 
 app.get("/", function (req, res) {
