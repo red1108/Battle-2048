@@ -9,6 +9,8 @@ import Auth from "./routes/Auth";
 import Profile from "./routes/Profile";
 import Navbar from "./components/Navigation";
 import PrivateRoute from "./helpers/PrivateRoute";
+import Multi from "./routes/Multi";
+import MultiGame from "./routes/MultiGame";
 import "./App.css";
 import { authService } from "./fbase";
 
@@ -46,10 +48,17 @@ function App() {
                 <Route path="/" exact={true} component={Home} />
                 <Route path="/learn" exact={true} component={Learn} />
                 <PrivateRoute path="/game" component={Game} isLoggedIn={isLoggedIn} userObj={userObj} />
-                <PrivateRoute exact={true} path="/list" component={List} />
+                <PrivateRoute exact={true} path="/list" component={List} isLoggedIn={isLoggedIn} userObj={userObj} />
                 <PrivateRoute path="/list/:id" component={Game} isLoggedIn={isLoggedIn} userObj={userObj} />
                 <Route path="/auth" component={Auth} />
                 <PrivateRoute path="/profile" component={Profile} isLoggedIn={isLoggedIn} userObj={userObj} />
+                <PrivateRoute exact={true} path="/multi" component={Multi} isLoggedIn={isLoggedIn} userObj={userObj} />
+                <PrivateRoute
+                    path="/multi/:id/:first/:password"
+                    component={MultiGame}
+                    isLoggedIn={isLoggedIn}
+                    userObj={userObj}
+                />
             </Router>
         );
     }

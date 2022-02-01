@@ -15,6 +15,7 @@ import "./listStyles.css";
 import SwiperCore, { Pagination } from "swiper/core";
 import { dbService } from "../fbase";
 import ReactRouterPropTypes from "react-router-prop-types";
+import PropTypes from "prop-types";
 
 var constants = require("../helpers/Constants.js");
 const playerColor = constants.player_color[0];
@@ -39,7 +40,6 @@ class List extends React.Component {
             rowNum: rowNum,
             clearlist: [],
         };
-
         this.lists = aiDays.map((i) => {
             return (
                 <SwiperSlide onClick={() => this.handleClick(i)} key={i}>
@@ -55,7 +55,6 @@ class List extends React.Component {
                 </SwiperSlide>
             );
         });
-
         window.onresize = (e) => this.handleResize(e);
         //window.addEventListener('resize', (e)=>this.handleResize(e));
     }
@@ -75,13 +74,17 @@ class List extends React.Component {
             colNum: colNum,
             rowNum: rowNum,
         });
-        update_layout();
+
+        const userDocRef = dbService.collection("user_info").doc(this.props.userObj.uid);
+        userDocRef.get().then((doc) => {
+            update_layout(doc.data().level);
+        });
     }
 
     handleResize() {
         let h = window.innerHeight;
         document.getElementById("list-inside").style.paddingTop = Math.round(h / 10) + "px";
-        update_layout();
+        update_layout(this.props.userObj.uid);
 
         const [rowNum, colNum] = calculate_layout();
         this.setState({
@@ -144,7 +147,7 @@ function calculate_layout() {
     return [rowNum, colNum];
 }
 
-function update_layout() {
+function update_layout(level) {
     let w = window.innerWidth,
         h = window.innerHeight;
     const [rowNum, colNum] = calculate_layout();
@@ -167,6 +170,7 @@ function update_layout() {
             }
         }
     });
+
     for (let i = 0; i < contents.length; i++) {
         contents[i].style.width = size + "px";
         contents[i].style.height = size + "px";
@@ -194,13 +198,13 @@ function update_layout() {
         clearedHead.style.fontSize = Math.round(size * 0.12) + "px";
         clearedNum.style.fontSize = Math.round(size * 0.18) + "px";
 
-        //Test code
-        if (num > 25) {
+        if (num > level) {
             clearedImg.style.visibility = "hidden";
         }
     }
 }
 
 List.propTypes = {
+    userObj: PropTypes.object.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
 };
