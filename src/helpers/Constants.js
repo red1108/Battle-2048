@@ -75,3 +75,6 @@ define("ai_text_color", [
     "#ffffff",
     "#ffffff",
 ]);
+
+define("wall_color", "#3B3838");
+define("wall_border_color", "#FFFFFF");

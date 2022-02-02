@@ -4,8 +4,17 @@
 // 2 = down
 // 3 = up
 
-//turn
-//true = player's turn, false = Ai's turn
+// turn : true = player's turn, false = Ai's turn
+// 100이상의 값은 벽을 의미
+
+export function make_initial_state(map_size) {
+    // create initial game state
+    let ret = Array(map_size * map_size).fill(0);
+    ret[map_size - 1] = 1; // Player 1
+    ret[Math.floor((map_size * map_size) / 2)] = 100; // Wall
+    ret[map_size * (map_size - 1)] = -1; // Player 2
+    return ret;
+}
 
 export function calcResult(l_state, action, turn) {
     /*
@@ -82,10 +91,36 @@ export function calcResult(l_state, action, turn) {
 }
 
 function action_right(state, turn) {
+    /*
+    function action_right
+    param state : 게임상태(2D)
+    param turn : true면 플레이어, false면 ai
+
+    return : [path, nxt_state]
+    */
     const map_size = state.length;
     const paths = [];
     const next_state = new Array(map_size).fill(0).map(() => new Array(map_size).fill(0));
 
+    // 점수계산을 위해 1차원으로 바꿈
+    const l_state = [];
+    let wallCount = 0;
+    for (let i = 0; i < map_size; i++) {
+        for (let j = 0; j < map_size; j++) {
+            l_state.push(state[i][j]);
+            if (state[i][j] >= 100) wallCount++;
+        }
+    }
+    const [playerScore, aiScore] = calculateScore(l_state);
+    const totScore = playerScore + aiScore;
+    let isWall = false;
+    // 만약 벽의 개수가 부족하고, 지금 내가 이기는 중이라면 벽을 추가
+    if (1 + Math.floor(totScore / 100) > wallCount) {
+        if ((turn && playerScore > aiScore) || (!turn && playerScore < aiScore)) {
+            isWall = true;
+        }
+    }
+    console.log("hmm", "p = ", playerScore, "ai = ", aiScore, "tot = ", totScore, "wc = ", wallCount, isWall);
     for (let row = 0; row < map_size; row++) {
         let holder = map_size;
 
@@ -143,14 +178,20 @@ function action_right(state, turn) {
     if (empty_pos.length === 0) {
         return [paths, next_state];
     }
-
+    // 새로 생길 블럭의 위치를 랜덤으로 고름
     const [row, col] = empty_pos[Math.floor(Math.random() * empty_pos.length)];
     const random_val = Math.floor(Math.random() * 2) + 1;
-    //자신의 턴 이후 자신의 블럭 생성
-    if (turn === true) {
-        next_state[row][col] = -random_val;
+
+    // 벽을 만들어야 할 경우엔 벽을 생성함
+    if (isWall) {
+        next_state[row][col] = 100 + wallCount;
     } else {
-        next_state[row][col] = random_val;
+        // 자신의 턴 이후 자신의 블럭 생성
+        if (turn === true) {
+            next_state[row][col] = -random_val;
+        } else {
+            next_state[row][col] = random_val;
+        }
     }
     return [paths, next_state];
 }
@@ -222,6 +263,16 @@ export function calcResultMulti(l_state, action, turn, row, col, val) {
 }
 
 function action_right_multi(state, turn, r, c, val) {
+    /*
+    function action_right_multi
+    param state : 게임상태(2D)
+    param turn :
+    param r :
+    param c :
+    param val :
+
+    return : 
+    */
     const map_size = state.length;
     const paths = [];
     const next_state = new Array(map_size).fill(0).map(() => new Array(map_size).fill(0));
@@ -297,9 +348,17 @@ function action_right_multi(state, turn, r, c, val) {
 }
 
 export function calculateScore(state) {
+    /*
+    calculate score function
+    param state : 1D array of game state
+    return : [p1 score, p2 score]
+    */
     let myScore = 0,
         aiScore = 0;
     for (let i = 0; i < state.length; i++) {
+        // 100 이상은 벽
+        if (state[i] >= 100) continue;
+
         if (state[i] > 0) {
             aiScore += Math.pow(2, state[i] - 1);
         } else if (state[i] < 0) {
@@ -322,14 +381,22 @@ export function isStuck(state, turn) {
 }
 
 export function calculateMax(state) {
-    let myScore = 0,
-        aiScore = 0;
+    /*
+    functioin calculateMax
+    return max block level of player
+
+    param state : 1D array of game state
+    return : [player1's max leve, player2's max level]
+    */
+    let score1 = 0,
+        score2 = 0;
     for (let i = 0; i < state.length; i++) {
+        if (state[i] >= 100) continue; // 100이상은 벽
         if (state[i] > 0) {
-            aiScore = Math.max(aiScore, state[i]);
+            score2 = Math.max(score2, state[i]);
         } else if (state[i] < 0) {
-            myScore = Math.max(myScore, -state[i]);
+            score1 = Math.max(score1, -state[i]);
         }
     }
-    return [myScore, aiScore];
+    return [score1, score2];
 }

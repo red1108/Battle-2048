@@ -1,7 +1,7 @@
 import React from "react";
 import "./Game.css";
 import io from "socket.io-client";
-import { calcResult, calculateScore, calculateMax, isStuck } from "../components/Logic.js";
+import { calcResult, calculateScore, calculateMax, isStuck, make_initial_state } from "../components/Logic.js";
 import { drawState, animationPath } from "../components/Drawing.js";
 import MyRecorder from "../components/Recorder";
 import { dbService } from "../fbase";
@@ -28,14 +28,13 @@ let yDown = null;
 class Game extends React.Component {
     constructor(props) {
         super(props);
-        //Mount Canvas
+        // Mount Canvas
         this.canvasRef = React.createRef();
         this.ctx = null;
         this.recorder = new MyRecorder();
 
-        let initial_state = Array(map_size * map_size).fill(0);
-        initial_state[map_size - 1] = 1; // AI
-        initial_state[map_size * (map_size - 1)] = -1; //Player
+        // create initial game state
+        let initial_state = make_initial_state(map_size);
 
         let color_theme = 0;
         if (Math.random() < 0.05) color_theme = 1;

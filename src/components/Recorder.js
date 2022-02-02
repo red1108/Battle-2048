@@ -72,7 +72,10 @@ export default class MyRecorder {
                 let v = state[ind];
                 let tmp = [];
                 for (let k = 0; k < 32; k++) tmp.push(0);
-                if (v > 0) {
+                if (v == 100) {
+                    //wall
+                    tmp[31] = 1;
+                } else if (v > 0) {
                     tmp[v - 1] = 1;
                 } else if (v < 0) {
                     tmp[-v - 1 + 16] = 1;

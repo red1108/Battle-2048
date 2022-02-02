@@ -61,6 +61,7 @@ export function drawState(canvas, state, color_theme) {
     const playerTextColor = constants.player_text_color;
     const aiColor = constants.ai_color[color_theme];
     const aiTextColor = constants.ai_text_color;
+    const wallColor = constants.wall_color;
 
     //drawing grid
     drawGrid(canvas);
@@ -75,7 +76,14 @@ export function drawState(canvas, state, color_theme) {
 
             ctx.roundRect(x, y, square_size, square_size, square_round);
 
-            if (state[i * map_size + j] < 0) {
+            if (state[i * map_size + j] >= 100) {
+                // 100이상은 벽
+                ctx.fillStyle = wallColor;
+                ctx.fill();
+                ctx.strokeStyle = "white";
+                ctx.lineWidth = square_size / 20;
+                ctx.stroke();
+            } else if (state[i * map_size + j] < 0) {
                 //음수가 플레이어
                 ctx.fillStyle = playerColor[-state[i * map_size + j]];
                 ctx.fill();
@@ -103,6 +111,7 @@ export function animationPath(canvas, state, paths, next_state, color_theme) {
     const playerTextColor = constants.player_text_color;
     const aiColor = constants.ai_color[color_theme];
     const aiTextColor = constants.ai_text_color;
+    const wallColor = constants.wall_color;
 
     let frame = 40;
     let cur = 40;
@@ -122,8 +131,15 @@ export function animationPath(canvas, state, paths, next_state, color_theme) {
 
             ctx.roundRect(x, y, square_size, square_size, square_round);
 
-            if (val < 0) {
-                //음수가 플레이어
+            if (val >= 100) {
+                // 100이상은 벽
+                ctx.fillStyle = wallColor;
+                ctx.fill();
+                ctx.strokeStyle = "white";
+                ctx.lineWidth = square_size / 20;
+                ctx.stroke();
+            } else if (val < 0) {
+                // 음수가 플레이어
                 ctx.fillStyle = playerColor[-val];
                 ctx.fill();
                 ctx.fillStyle = playerTextColor[-val];
