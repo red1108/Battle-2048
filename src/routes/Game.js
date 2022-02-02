@@ -66,13 +66,14 @@ class Game extends React.Component {
                     history.push("/list");
                 }
 
-                model.postMessage({ type: "message", value: "start", random: 1, level: this.listLevel });
+                model.postMessage({ type: "message", value: "start", random: 0.3, level: this.listLevel });
 
                 let tmp = this;
                 model.onmessage = function (e) {
                     const data = e.data;
                     if (data["type"] === "action") {
                         if (tmp.state.winner != null) {
+                            //이미 게임이 끝났다면
                             return;
                         }
                         const action = data["value"];
@@ -210,14 +211,21 @@ class Game extends React.Component {
     }
 
     handleAction(action) {
+        /*
+            handle game action
+            param action : action of game. 0:→, 1:←, 2:↓, 3:↑
+
+            return false When the action has no effect. else return true.
+        */
         if (this.state.winner != null) {
-            return;
+            // 이미 승자가 있으므로 return false
+            return false;
         }
         const history = this.state.history.slice(0, this.state.index + 1);
         const current = this.state.history[this.state.index];
         const [paths, nxt] = calcResult(current.squares, action, current.turn);
 
-        //아무것도 바뀌지 않는다면 turn을 넘기지 않음.
+        // 아무것도 바뀌지 않는다면 turn을 넘기지 않음.
         if (JSON.stringify(current.squares) === JSON.stringify(nxt)) {
             return false;
         }

@@ -8,6 +8,14 @@
 //true = player's turn, false = Ai's turn
 
 export function calcResult(l_state, action, turn) {
+    /*
+    calculate result function
+    param l_state : 1D version state
+    action : 0:→, 1:←, 2:↓, 3:↑
+    turn : true = player, false = ai
+    return : [path, next_state(1D)]
+    It should be noted that ai is represented by a positive number, and the player is represented by a negative number.
+    */
     const map_size = Math.round(Math.sqrt(l_state.length));
     const state = new Array(map_size).fill(0).map(() => new Array(map_size).fill(0));
     const next_state = [];
