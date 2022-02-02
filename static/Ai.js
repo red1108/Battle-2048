@@ -240,11 +240,15 @@ function convert(state) {
     let ret = Array(map_size * map_size * 2).fill(0);
     let max = 0;
     for (let i = 0; i < map_size * map_size; i++) {
+        if (state[i] == 0) continue;
         if (state[i] > 0 && max < state[i]) max = state[i];
         if (state[i] < 0 && max < -state[i]) max = -state[i];
     }
     for (let i = 0; i < map_size * map_size; i++) {
-        if (state[i] > 0) {
+        if (state[i] >= 100) {
+            // 벽은 없는 블럭 처리
+            ret[i] = 0;
+        } else if (state[i] > 0) {
             //ai 먼저
             ret[i] = Math.pow(2, state[i] - max);
         } else if (state[i] < 0) {

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-import { calcResult, calculateScore, calculateMax, isStuck } from "../components/Logic.js";
+import { calcResult, calculateScore, calculateMax, isStuck, make_initial_state } from "../components/Logic.js";
 import { drawState, animationPath } from "../components/Drawing.js";
 import { Link } from "react-router-dom";
 import ReactGA from "react-ga";
@@ -24,9 +24,8 @@ class Home extends React.Component {
         this.canvasRef = React.createRef();
         this.ctx = null;
 
-        let initial_state = Array(map_size * map_size).fill(0);
-        initial_state[map_size - 1] = 1; // AI1
-        initial_state[map_size * (map_size - 1)] = -1; //AI2
+        // create initial game state
+        let initial_state = make_initial_state(map_size);
 
         const isMobile = window.innerWidth <= window.innerHeight * 0.84;
         const canvasWidth = isMobile ? window.innerWidth * 0.524 : window.innerHeight * 0.491;
