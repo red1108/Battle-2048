@@ -61,6 +61,7 @@ const Auth = () => {
                     uid: user_uid,
                     id: id,
                     email: email,
+                    level: 0,
                 });
             } else {
                 if (!email.includes("@")) {
