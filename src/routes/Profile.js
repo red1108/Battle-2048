@@ -34,21 +34,6 @@ const Profile = ({ userObj }) => {
 
     return (
         <div className="profile">
-            <center className="profile-info">
-                <button id="logoutBtn" onClick={onLogOutClick}>
-                    Log Out
-                </button>
-                <div>
-                    {records.map((record) => (
-                        <div key={record.id}>
-                            <h4 className="profile-history">
-                                {record.winner ? "Win" : "Lose"} {record.myScore}:{record.aiScore}
-                            </h4>
-                            <h4 className="profile-history">When: {record.endedAt}</h4>
-                        </div>
-                    ))}
-                </div>
-            </center>
             <iframe
                 id="amazon-left-ads"
                 width="120"
@@ -73,6 +58,21 @@ const Profile = ({ userObj }) => {
                 frameBorder="0"
                 src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=2048b02-20&marketplace=amazon&amp;region=US&placement=B00U26V4VQ&asins=B00U26V4VQ&linkId=0fb00ea090251699f5675fab6a226a0a&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=E2D8D0"
             ></iframe>
+            <center className="profile-info">
+                <button id="logoutBtn" onClick={onLogOutClick}>
+                    Log Out
+                </button>
+                <div>
+                    {records.map((record) => (
+                        <div key={record.id}>
+                            <h4 className="profile-history">
+                                {record.winner ? "Win" : "Lose"} {record.myScore}:{record.aiScore}
+                            </h4>
+                            <h4 className="profile-history">When: {record.endedAt}</h4>
+                        </div>
+                    ))}
+                </div>
+            </center>
         </div>
     );
 };
