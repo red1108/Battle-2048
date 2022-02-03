@@ -7,7 +7,7 @@ let random_per = 0.08; // default
 
 async function loadModel(level) {
     if (level == undefined) level = 1;
-    let model_url = "http://localhost/models/day" + level + "/model.json";
+    let model_url = "http://battle2048.com/models/day" + level + "/model.json";
     model = await tf.loadLayersModel(model_url);
     console.log("loaded model = ", model_url);
 }
@@ -32,7 +32,6 @@ onmessage = function (e) {
     } else if (data["type"] === "state") {
         const state = data["state"];
         let possible = get_possible_actions(state);
-        console.log("possible = ", possible, "random_per = ", random_per);
 
         // If nothing can be done, the game is over.
         if (possible.length == 0) {
