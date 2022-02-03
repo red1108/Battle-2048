@@ -120,7 +120,6 @@ function action_right(state, turn) {
             isWall = true;
         }
     }
-    console.log("hmm", "p = ", playerScore, "ai = ", aiScore, "tot = ", totScore, "wc = ", wallCount, isWall);
     for (let row = 0; row < map_size; row++) {
         let holder = map_size;
 
