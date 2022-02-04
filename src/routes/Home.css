@@ -144,6 +144,16 @@ ul {
     align-items: center;
 }
 
+#adfit {
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    margin: 0 auto;
+    background-color: #e2d8d0;
+    flex-direction: column;
+    z-index: 3;
+}
+
 .mhome-game {
     position: absolute;
     top: 54.8%;
@@ -153,16 +163,6 @@ ul {
     display: flex;
     flex-direction: column;
     z-index: 2;
-}
-
-.adfit {
-    position: absolute;
-    bottom: 0%;
-    left: 0%;
-    margin: 0 auto;
-    background-color: #e2d8d0;
-    flex-direction: column;
-    z-index: 3;
 }
 
 #mhome-score {
@@ -261,10 +261,9 @@ ul {
     align-items: center;
 }
 
-.madfit {
+#madfit {
     position: absolute;
-    bottom: 5%;
-    margin: 0 auto;
+    bottom: 0%;
     background-color: #e2d8d0;
     flex-direction: column;
     justify-content: center;

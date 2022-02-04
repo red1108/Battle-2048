@@ -126,6 +126,8 @@ class Home extends React.Component {
             document.getElementById("mhome-score").style.top = 0.548 * window.innerHeight + this.state.canvasWidth;
             document.getElementById("mhome-score").style.width = this.state.canvasWidth / 2;
             document.getElementById("mhome-score").style.backgroundColor = "#bbaca1";
+            const leftAds = document.getElementById("madfit");
+            leftAds.style.marginLeft = Math.round((window.innerWidth - 728) / 2) + "px";
         } else {
             document.getElementById("home-score").style.removeProperty("left");
             document.getElementById("home-score").style.right = 0.0353 * window.innerWidth + this.state.canvasWidth / 4;
@@ -151,22 +153,32 @@ class Home extends React.Component {
         if (this.state.winner === null) {
             setTimeout(() => model1.postMessage({ type: "state", state: nxt }), 1000);
         }
+        let ins = document.createElement("ins");
+        let scr = document.createElement("script");
         if (isMobile) {
             document.getElementById("mhome-score").style.left = 0.238 * window.innerWidth + this.state.canvasWidth / 4;
             document.getElementById("mhome-score").style.top = 0.548 * window.innerHeight + this.state.canvasWidth;
             document.getElementById("mhome-score").style.width = this.state.canvasWidth / 2;
             document.getElementById("mhome-score").style.backgroundColor = "#bbaca1";
+            ins.className = "kakao_ad_area";
+            ins.style = "display:none;align-items: center;justify-content: center;";
+            scr.async = "true";
+            scr.type = "text/javascript";
+            scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+            ins.setAttribute("data-ad-width", "728");
+            ins.setAttribute("data-ad-height", "90");
+            ins.setAttribute("data-ad-unit", "DAN-Le78A0P3YyeOMOTX");
+
+            document.getElementById("madfit").appendChild(ins);
+            document.getElementById("madfit").appendChild(scr);
+            const leftAds = document.getElementById("madfit");
+            leftAds.style.marginLeft = Math.round((window.innerWidth - 728) / 2) + "px";
         } else {
             document.getElementById("home-score").style.removeProperty("left");
             document.getElementById("home-score").style.right = 0.0353 * window.innerWidth + this.state.canvasWidth / 4;
             document.getElementById("home-score").style.top = 0.893 * window.innerHeight;
             document.getElementById("home-score").style.width = this.state.canvasWidth / 2;
             document.getElementById("home-score").style.backgroundColor = "#bbaca1";
-        }
-        let ins = document.createElement("ins");
-        let scr = document.createElement("script");
-
-        if (!isMobile) {
             ins.className = "kakao_ad_area";
             ins.style = "display:none;";
             scr.async = "true";
@@ -176,8 +188,8 @@ class Home extends React.Component {
             ins.setAttribute("data-ad-height", "90");
             ins.setAttribute("data-ad-unit", "DAN-Le78A0P3YyeOMOTX");
 
-            document.querySelector(".adfit").appendChild(ins);
-            document.querySelector(".adfit").appendChild(scr);
+            document.getElementById("adfit").appendChild(ins);
+            document.getElementById("adfit").appendChild(scr);
         }
     }
 
@@ -277,7 +289,7 @@ class Home extends React.Component {
                     <Link to="/learn">
                         <div className="mhome-learnbutton">learn more</div>
                     </Link>
-                    <div className="madfit" />
+                    <div id="madfit" />
                 </>
             );
         } else {
@@ -313,7 +325,7 @@ class Home extends React.Component {
                     <Link to="/learn">
                         <div className="home-learnbutton">learn more</div>
                     </Link>
-                    <div className="adfit" />
+                    <div id="adfit" />
                 </>
             );
         }
